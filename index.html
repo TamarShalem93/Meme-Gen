@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Hapshuta's Meme</title>
+  </head>
+  <body class="main-layout" onload="init()">
+    <header class="main-header full main-layout">
+      <section class="nav flex space-between align-center">
+        <div class="logo">Hapshuta's Meme</div>
+        <div type="button" class="toggle-menu" onclick="toggleMenu()"></div>
+        <nav class="main-nav clean-list">
+          <ul class="main-menu clean-list flex">
+            <li class="active" onclick="onOpenNav(this)">Gallery</li>
+            <li onclick="onOpenNav(this)">Meme</li>
+            <li>About</li>
+          </ul>
+        </nav>
+      </section>
+    </header>
+    <section class="main-layout full">
+      <section class="gallery-layout gallery" hidden>
+        <img onclick="onChooseMeme(this)" src="img/1.jpg" alt="" />
+      </section>
+
+      <section class="canvas-container">
+        <section class="control-box">
+          <form class="txt-inputs-container">
+            <label for="txt">Meme Text</label>
+            <input
+              onchange="onTxtInput(event, this.value)"
+              type="text"
+              name="txt"
+              id="txt"
+              placeholder="Your Punch"
+              class="txt"
+            />
+          </form>
+        </section>
+        <canvas id="meme-canvas" width="450" height="450"></canvas>
+      </section>
+    </section>
+
+    <script src="js/service/meme.service.js"></script>
+    <script src="js/main-controller.js"></script>
+    <script src="js/meme-controller.js"></script>
+  </body>
+</html>

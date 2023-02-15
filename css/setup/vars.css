@@ -1,0 +1,13 @@
+:root{
+
+  /* palette */
+
+  --clr1: #2f65e4;
+  --clr-primary: #537FE7;
+  --clr-1: #8d9fc9;
+  --clr-2: #af76ed;
+  --clr-3: #E5D1FA;
+  
+  /* layout */
+    --nav-height: 100px;
+}

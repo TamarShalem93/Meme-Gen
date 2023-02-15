@@ -1,0 +1,17 @@
+.main-layout {
+  display: grid;
+  grid-template-columns: 50px 1fr 50px;
+}
+
+.main-layout>.full {
+  grid-column: 1 / -1;
+}
+
+.main-layout>*:not(.full) {
+  grid-column: 2;
+}
+
+.gallery-layout{
+  display: grid;
+  grid-template-columns: repeat(6 1fr);
+}
