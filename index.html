@@ -14,38 +14,56 @@
         <div type="button" class="toggle-menu" onclick="toggleMenu()"></div>
         <nav class="main-nav clean-list">
           <ul class="main-menu clean-list flex">
-            <li class="active" onclick="onOpenNav(this)">Gallery</li>
-            <li onclick="onOpenNav(this)">Meme</li>
-            <li>About</li>
+            <li class="navMeme active" onclick="onOpenSection('meme', this)">
+              Meme
+            </li>
+            <li class="navGallery" onclick="onOpenSection('gallery', this)">
+              Gallery
+            </li>
           </ul>
         </nav>
       </section>
     </header>
-    <section class="main-layout full">
-      <section class="gallery-layout gallery" hidden>
-        <img onclick="onChooseMeme(this)" src="img/1.jpg" alt="" />
+    <main class="main-layout">
+      <section class="main-continer main-container-layout">
+        <section class="canvas-container">
+          <canvas id="meme-canvas" width="400" height="400"></canvas>
+        </section>
+        <section class="control-box box-layout">
+          <input
+            oninput="onTxtInput(event, this.value)"
+            type="text"
+            name="txt"
+            id="txt"
+            placeholder="Your Punch"
+            class="txt"
+          />
+          <button class="btn color-btn">
+            <input
+              type="color"
+              name="change-color"
+              oninput="onChangeColor(this.value)"
+            />
+          </button>
+
+          <button class="btn btn-font-size" onclick="onChangeFontSize('-')">
+            -A
+          </button>
+          <button class="btn btn-font-size" onclick="onChangeFontSize('+')">
+            A+
+          </button>
+          <button class="btn btn-change-line" onclick="onChangeLine()">
+            Change line
+          </button>
+        </section>
       </section>
 
-      <section class="canvas-container">
-        <section class="control-box">
-          <form class="txt-inputs-container">
-            <label for="txt">Meme Text</label>
-            <input
-              onchange="onTxtInput(event, this.value)"
-              type="text"
-              name="txt"
-              id="txt"
-              placeholder="Your Punch"
-              class="txt"
-            />
-          </form>
-        </section>
-        <canvas id="meme-canvas" width="450" height="450"></canvas>
-      </section>
-    </section>
+      <section class="gallery hide"></section>
+    </main>
 
     <script src="js/service/meme.service.js"></script>
     <script src="js/main-controller.js"></script>
+    <script src="js/gallery-controller.js"></script>
     <script src="js/meme-controller.js"></script>
   </body>
 </html>

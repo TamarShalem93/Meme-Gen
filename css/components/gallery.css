@@ -1,4 +1,13 @@
+
+.gallery{
+  margin-inline-start: 2em ;
+}
 .gallery >img{
-  width: 250px;
-  
+  width: 200px;
+  cursor: pointer;
+  /* padding-left: 10px; */
+}
+
+.gallery>img:hover {
+  opacity: 0.7;
 }

@@ -1,10 +1,15 @@
 .canvas-container {
-  width: 50vw;
-  height: 80vh;
-  
+display: flex;
+  width: 60vw;
+  height: 60vh;
+  grid-area: c;
+  margin-bottom: 40px;
+  flex-direction: column;
+    align-items: center;
+    
+    justify-content: center;
 }
 
 canvas {
   outline: 5px solid var(--clr-1);
-
 }

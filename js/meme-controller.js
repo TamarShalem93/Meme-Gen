@@ -4,23 +4,12 @@ let gElCanvas, gCtx
 let gStartPos = { x: null, y: null }
 let gIsDrag = false
 
-function init() {
-  gElCanvas = document.querySelector('#meme-canvas')
-  gCtx = gElCanvas.getContext('2d')
-  resizeCanvas()
-
-  // addListeners()
-  // renderCanvas()
-  renderMeme()
-  // createImgs()
-}
-
 function renderMeme() {
   const meme = getMeme()
-  console.log(meme)
-  // that renders an image
-  // on the canvas and a line of text on top
   loadImage(meme)
+
+  document.querySelector('.gallery').classList.add('hide')
+  document.querySelector('.main-continer').classList.remove('hide')
 }
 
 function loadImage(meme) {
@@ -28,7 +17,7 @@ function loadImage(meme) {
   img.src = `img/${meme.selectedImgId}.jpg`
   img.onload = () => {
     renderImg(img)
-    drawText(meme.lines[meme.selectedLineIdx])
+    drawText(meme.lines)
   }
 }
 
@@ -36,22 +25,38 @@ function renderImg(img) {
   gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
 }
 
-function drawText(line) {
-  gCtx.lineWidth = 1
-  gCtx.strokeStyle = '#000'
-  gCtx.fillStyle = `${line.color}`
-  gCtx.font = `${line.size}px Impact`
-  gCtx.textAlign = `${line.align}`
-  gCtx.textBaseline = 'middle'
+function drawText(lines) {
+  lines.forEach((line) => {
+    gCtx.lineWidth = 1
+    gCtx.strokeStyle = '#000'
+    gCtx.fillStyle = `${line.color}`
+    gCtx.font = `${line.size}px Impact`
+    gCtx.textAlign = `${line.align}`
+    gCtx.textBaseline = 'middle'
 
-  gCtx.fillText(line.txt, line.x, line.y)
-  gCtx.strokeText(line.txt, line.x, line.y)
+    gCtx.fillText(line.txt, line.x, line.y)
+    gCtx.strokeText(line.txt, line.x, line.y)
+  })
 }
 
-function onTxtInput(txt) {
+function onTxtInput(ev, txt) {
   ev.preventDefault()
   setLineTxt(txt)
-  // return txt
+  renderMeme()
+}
+
+function onChangeColor(color) {
+  setColor(color)
+  renderMeme()
+}
+
+function onChangeFontSize(diff) {
+  setFontSize(diff)
+  renderMeme()
+}
+
+function onChangeLine() {
+  setCurrLine()
 }
 
 function onClearCanvas() {

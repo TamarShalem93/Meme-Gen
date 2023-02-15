@@ -1,11 +1,29 @@
 'use strict'
 var gCurrNav = 'Gallery'
 
-function onOpenNav(elOpenNav) {
-  if (elOpenNav.innerText === gCurrNav) return
-  gCurrNav = elOpenNav.innerText
+function init() {
+  gElCanvas = document.querySelector('#meme-canvas')
+  gCtx = gElCanvas.getContext('2d')
+  resizeCanvas()
 
-  elOpenNav.classList.add('active')
+  // addListeners()
+  // renderCanvas()
+  renderMeme()
+  // renderGallery()
+  // createImgs()
+}
 
-  //TODO remove active class
+function onOpenSection(section, elCurrNav) {
+  if (gCurrNav === section) return
+  if (section === 'gallery') {
+    renderGallery()
+    elCurrNav.classList.add('active')
+    document.querySelector('.navMeme').classList.remove('active')
+  }
+  if (section === 'meme') {
+    renderMeme()
+    elCurrNav.classList.add('active')
+    document.querySelector('.navGallery').classList.remove('active')
+  }
+  gCurrNav = section
 }
