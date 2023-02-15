@@ -4,17 +4,31 @@ let gElCanvas, gCtx
 let gStartPos = { x: null, y: null }
 let gIsDrag = false
 
+function init() {
+  gElCanvas = document.querySelector('#meme-canvas')
+  gCtx = gElCanvas.getContext('2d')
+  resizeCanvas()
+
+  addListeners()
+  renderMeme()
+}
+
+function clearCanvas() {
+  gCtx.fillStyle = '#ede5ff59'
+  gCtx.fillRect(0, 0, gElCanvas.width, gElCanvas.height)
+}
+
 function renderMeme() {
   const meme = getMeme()
   loadImage(meme)
 
   document.querySelector('.gallery').classList.add('hide')
-  document.querySelector('.main-continer').classList.remove('hide')
+  document.querySelector('.main-canvas-continer').classList.remove('hide')
 }
 
 function loadImage(meme) {
   let img = new Image()
-  img.src = `img/${meme.selectedImgId}.jpg`
+  img.src = `img/${meme.selectedImgId}.JPEG`
   img.onload = () => {
     renderImg(img)
     drawText(meme.lines)
@@ -59,9 +73,10 @@ function onChangeLine() {
   setCurrLine()
 }
 
-function onClearCanvas() {
-  gCtx.fillStyle = '#ede5ff59'
-  gCtx.fillRect(0, 0, gElCanvas.width, gElCanvas.height)
+function onMakeMeme() {
+  var lines = creatLines()
+  creatMeme(lines)
+  renderMeme()
 }
 
 function resizeCanvas() {
@@ -69,11 +84,13 @@ function resizeCanvas() {
   gElCanvas.width = elContainer.offsetWidth
   gElCanvas.height = elContainer.offsetHeight
 }
+
 function addListeners() {
-  addMouseListeners()
-  addTouchListeners()
+  // addMouseListeners()
+  // addTouchListeners()
+  //Listen for resize ev
   window.addEventListener('resize', () => {
-    init()
+    resizeCanvas()
   })
 }
 

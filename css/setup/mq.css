@@ -20,12 +20,18 @@
 
   .main-container-layout {
       grid-template-areas: "c b";
+      justify-items: stretch;
       column-gap: 10px;
     }
 
-    .canvas-container{
-      margin-bottom: 0;
-    }
+ .canvas-container{
+    margin-bottom: 0;
+    padding-inline-start: 0;
+  }
+
+  .logo {
+    padding: 0;
+  }
      
 }
 

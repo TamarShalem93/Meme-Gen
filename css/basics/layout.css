@@ -1,5 +1,6 @@
 .main-layout {
   display: grid;
+  
 }
 
 .main-container-layout{
@@ -7,7 +8,10 @@
   grid-template-areas: 
   "c"
   "b";
-  row-gap: 10px;
+
+  justify-items: center;
+
+  gap: 10px;
 }
 
 .box-layout{

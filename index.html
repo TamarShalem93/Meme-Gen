@@ -5,27 +5,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/style.css" />
-    <title>Hapshuta's Meme</title>
+    <title>Miley's Meme</title>
   </head>
   <body class="main-layout" onload="init()">
     <header class="main-header full main-layout">
       <section class="nav flex space-between align-center">
-        <div class="logo">Hapshuta's Meme</div>
+        <div class="logo">Miley's Meme</div>
         <div type="button" class="toggle-menu" onclick="toggleMenu()"></div>
         <nav class="main-nav clean-list">
           <ul class="main-menu clean-list flex">
-            <li class="navMeme active" onclick="onOpenSection('meme', this)">
+            <li class="nav-meme active" onclick="onOpenSection('meme', this)">
               Meme
             </li>
-            <li class="navGallery" onclick="onOpenSection('gallery', this)">
+            <li class="nav-gallery" onclick="onOpenSection('gallery', this)">
               Gallery
             </li>
           </ul>
         </nav>
       </section>
     </header>
-    <main class="main-layout">
-      <section class="main-continer main-container-layout">
+    <main class="main-continer">
+      <section class="main-canvas-continer main-container-layout">
         <section class="canvas-container">
           <canvas id="meme-canvas" width="400" height="400"></canvas>
         </section>
@@ -61,6 +61,8 @@
       <section class="gallery hide"></section>
     </main>
 
+    <script src="js/utils.js"></script>
+    <script src="js/service/meme.service.js"></script>
     <script src="js/service/meme.service.js"></script>
     <script src="js/main-controller.js"></script>
     <script src="js/gallery-controller.js"></script>
