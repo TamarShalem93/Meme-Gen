@@ -22,14 +22,16 @@ var gTxts = [
 ]
 var gMeme = {}
 
-function creatLine(x, y, txt, size, color) {
+function creatLine(x, y, txt, size, colorTxt, colorStroke) {
   return {
     x,
     y,
     txt,
     size,
     align: 'left',
-    color,
+    colorTxt,
+    colorStroke,
+    font: 'impact',
     isDrag: false,
   }
 }
@@ -49,6 +51,7 @@ function creatMeme(imgId, src) {
         100,
         gTxts[getRandomInt(0, 14)],
         getRandomInt(10, 40),
+        getRandomColor(),
         getRandomColor()
       ),
       creatLine(
@@ -56,6 +59,7 @@ function creatMeme(imgId, src) {
         300,
         gTxts[getRandomInt(0, 14)],
         getRandomInt(10, 40),
+        getRandomColor(),
         getRandomColor()
       ),
     ],
@@ -84,12 +88,23 @@ function setImg(imgId) {
   gMeme.selectedImgId = imgId
 }
 
-function setColor(color) {
-  gMeme.lines[gMeme.selectedLineIdx].color = color
+function setFontFamily(font) {
+  gMeme.lines[gMeme.selectedLineIdx].font = font
+}
+
+function setColor(color, element) {
+  if (element === 'txt') gMeme.lines[gMeme.selectedLineIdx].colorTxt = color
+  if (element === 'stroke')
+    gMeme.lines[gMeme.selectedLineIdx].colorStroke = color
 }
 
 function setFontSize(diff) {
   gMeme.lines[gMeme.selectedLineIdx].size += diff * 2
+}
+
+function setTxtAling(diraction) {
+  console.log(diraction)
+  gMeme.lines[gMeme.selectedLineIdx].align = diraction
 }
 
 function setCurrLine() {

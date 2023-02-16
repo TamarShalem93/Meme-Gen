@@ -1,3 +1,76 @@
+.control-box>*{
+  margin: auto;
+  
+  
+}
+
 .control-box{
   grid-area: b;
+  background-color: var(--clr-2);
+  padding: 20px;
+  border-radius: 10px;
 }
+
+.box{
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 5px;
+}
+
+.file-input{
+  grid-area: file;
+}
+
+.txt-input{
+  grid-area: txt;
+}
+
+.btn-change-line{
+  grid-area: change-line;
+}
+.btn-save{
+  grid-area: save;
+}
+
+.btn-delete-canvas{
+  grid-area: delete-canvas;
+}
+
+.font-select{
+  grid-area: font;
+}
+
+.btn-color-stroke{
+  grid-area: stroke-color;
+}
+
+.btn-txt-color{
+  grid-area: txt-color;
+}
+
+.btn-font-small{
+  grid-area: font-small;
+}
+.btn-font-big{
+  grid-area: font-big;
+}
+
+.btn-aling-right{
+  grid-area: right-aling;
+}
+.btn-aling-center{
+  grid-area: center-aling;
+}
+.btn-aling-left{
+  grid-area: left-aling;
+}
+
+.btn-share{
+  grid-area: share;
+}
+
+.btn-download{
+  grid-area: download;
+}
+                        
+

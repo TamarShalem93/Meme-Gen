@@ -1,10 +1,16 @@
 
 .gallery{
   margin-inline-start: 2em ;
+
+  /* margin: 5px; */
+  /* float: left; */
+  /* width: 180px; */
 }
 .gallery >img{
   width: 200px;
   cursor: pointer;
+  margin: 10px;
+  border-radius: 10px;
   /* padding-left: 10px; */
 }
 

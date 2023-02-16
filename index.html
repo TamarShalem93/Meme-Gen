@@ -35,64 +35,203 @@
           <canvas id="meme-canvas" width="400" height="400"></canvas>
         </section>
         <section class="control-box box-layout">
-          <input
-            type="file"
-            class="file-input btn"
-            name="image"
-            onchange="onImgInput(event)"
-          />
-          <input
-            oninput="onTxtInput(event, this.value)"
-            type="text"
-            name="txt"
-            id="txt"
-            placeholder="Your Punch"
-            class="txt"
-          />
-          <button class="btn color-btn">
+          <div class="box">
             <input
-              type="color"
-              name="change-color"
-              oninput="onChangeColor(this.value)"
+              type="file"
+              class="file-input btn"
+              name="image"
+              onchange="onImgInput(event)"
             />
-          </button>
+          </div>
+          <div class="box">
+            <input
+              oninput="onTxtInput(event, this.value)"
+              type="text"
+              name="txt"
+              id="txt"
+              placeholder="Your Punch"
+              class="txt-input"
+            />
+          </div>
+          <div class="box">
+            <button class="btn btn-change-line" onclick="onChangeLine()">
+              <i class="fa-solid fa-arrow-down-up-across-line"></i>
+            </button>
 
-          <button
-            class="btn btn-font-size"
-            onclick="onChangeFontSize(event,-1)"
-          >
-            <i class="fa-solid fa-a"></i> -
-          </button>
-          <button
-            class="btn btn-font-size"
-            onclick="onChangeFontSize(event, 1)"
-          >
-            <i class="fa-solid fa-a"></i> +
-          </button>
-          <button class="btn btn-change-line" onclick="onChangeLine()">
-            <i class="fa-solid fa-arrow-down-up-across-line"></i>
-          </button>
-          <button class="btn btn-save" onclick="onSaveImg()">
-            <i class="fa-solid fa-floppy-disk"></i>
-          </button>
-          <button class="btn btn-share" onclick="onShareImg()">
-            <i class="fa-solid fa-share"></i>
-          </button>
-          <button class="btn" onclick="clearCanvas()">
-            <i class="fa-solid fa-trash-can"></i>
-          </button>
-          <a
-            href="#"
-            class="btn"
-            download="my-img.jpg"
-            onclick="downloadCanvas(this)"
-            ><i class="fa-solid fa-download"></i
-          ></a>
+            <button class="btn btn-delete-canvas" onclick="clearCanvas()">
+              <i class="fa-solid fa-trash-can"></i>
+            </button>
+          </div>
+          <div class="box">
+            <button
+              class="btn btn-font-small"
+              onclick="onChangeFontSize(event,-1)"
+            >
+              <i class="fa-solid fa-a"></i>-
+            </button>
+            <button
+              class="btn btn-font-big"
+              onclick="onChangeFontSize(event, 1)"
+            >
+              <i class="fa-solid fa-a"></i>+
+            </button>
+            <button
+              class="btn btn-aling-left"
+              onclick="onAlingTxt(event, 'left')"
+            >
+              <i class="fa-solid fa-align-left"></i>
+            </button>
+            <button
+              class="btn btn-aling-center"
+              onclick="onAlingTxt(event, 'center')"
+            >
+              <i class="fa-solid fa-align-center"></i>
+            </button>
+            <button
+              class="btn btn-aling-right"
+              onclick="onAlingTxt(event, 'right')"
+            >
+              <i class="fa-solid fa-align-right"></i>
+            </button>
+          </div>
+
+          <div class="box">
+            <select
+              class="font-select"
+              id="fontFamilySelect"
+              onchange="onUpdateFontFamily(this.value)"
+            >
+              <option value="">Select</option>
+              <option value="Georgia,serif" style="font-family: Georgia, serif">
+                Georgia
+              </option>
+              <option
+                value="Palatino Linotype,Book Antiqua,Palatino,serif"
+                style="
+                  font-family: Palatino Linotype, Book Antiqua, Palatino, serif;
+                "
+              >
+                Palatino Linotype
+              </option>
+              <option
+                value="Times New Roman,Times,serif"
+                style="font-family: Times New Roman, Times, serif"
+              >
+                Times New Roman
+              </option>
+              <option
+                value="Arial,Helvetica,sans-serif"
+                style="font-family: Arial, Helvetica, sans-serif"
+              >
+                Arial
+              </option>
+              <option
+                value="Arial Black,Gadget,sans-serif"
+                style="font-family: Arial Black, Gadget, sans-serif"
+              >
+                Arial Black
+              </option>
+              <option
+                value="Comic Sans MS,cursive,sans-serif"
+                style="font-family: Comic Sans MS, cursive, sans-serif"
+              >
+                Comic Sans MS
+              </option>
+              <option
+                selected="selected"
+                value="Impact,Charcoal,sans-serif"
+                style="font-family: Impact, Charcoal, sans-serif"
+              >
+                Impact
+              </option>
+              <option
+                value="Lucida Sans Unicode,Lucida Grande,sans-serif"
+                style="
+                  font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;
+                "
+              >
+                Lucida Sans Unicode
+              </option>
+              <option
+                value="Tahoma,Geneva,sans-serif"
+                style="font-family: Tahoma, Geneva, sans-serif"
+              >
+                Tahoma
+              </option>
+              <option
+                value="Trebuchet MS,Helvetica,sans-serif"
+                style="font-family: Trebuchet MS, Helvetica, sans-serif"
+              >
+                Trebuchet MS
+              </option>
+              <option
+                value="Verdana,Geneva,sans-serif"
+                style="font-family: Verdana, Geneva, sans-serif"
+              >
+                Verdana
+              </option>
+              <option
+                value="Courier New,Courier,monospace"
+                style="font-family: Courier New, Courier, monospace"
+              >
+                Courier New
+              </option>
+              <option
+                value="Lucida Console,Monaco,monospace"
+                style="font-family: Lucida Console, Monaco, monospace"
+              >
+                Lucida Console
+              </option>
+            </select>
+
+            <label
+              class="btn btn-color-stroke"
+              for="change-stroke-color"
+              onclick="onOpenColor(this)"
+              ><i class="fa-sharp fa-solid fa-s"></i
+            ></label>
+            <input
+              hidden
+              type="color"
+              name="change-stroke-color"
+              id="change-stroke-color"
+              oninput="onChangeStrokeColor(this, this.value)"
+            />
+            <label
+              class="btn btn-txt-color"
+              for="change-txt-color"
+              onclick="onOpenColor(this)"
+              ><i class="fa-solid fa-palette"></i
+            ></label>
+            <input
+              hidden
+              type="color"
+              name="change-txt-color"
+              id="change-txt-color"
+              oninput="onChangeTxtColor(this, this.value)"
+            />
+          </div>
+          <div class="box">
+            <button class="btn btn-save" onclick="onSaveImg()">
+              <i class="fa-solid fa-floppy-disk"></i>
+            </button>
+            <button class="btn btn-share" onclick="onShareImg()">
+              <i class="fa-solid fa-share"></i>
+            </button>
+
+            <a
+              href="#"
+              class="btn btn-download"
+              download="my-img.jpg"
+              onclick="downloadCanvas(this)"
+              ><i class="fa-solid fa-download"></i
+            ></a>
+          </div>
         </section>
         <section class="saved-memes-gallery"></section>
       </section>
 
-      <section class="gallery"></section>
+      <section class="gallery gallery-layout"></section>
     </main>
 
     <div class="user-msg"></div>

@@ -60,9 +60,9 @@ function downloadCanvas(elLink) {
 function drawText(lines) {
   lines.forEach((line) => {
     gCtx.lineWidth = 1
-    gCtx.strokeStyle = '#000'
-    gCtx.fillStyle = `${line.color}`
-    gCtx.font = `${line.size}px Impact`
+    gCtx.strokeStyle = `${line.colorStroke}`
+    gCtx.fillStyle = `${line.colorTxt}`
+    gCtx.font = `${line.size}px ${line.font}`
     gCtx.textAlign = `${line.align}`
     gCtx.textBaseline = 'middle'
 
@@ -76,9 +76,36 @@ function onTxtInput(ev, txt) {
   setLineTxt(txt)
   renderMeme()
 }
+function onAlingTxt(ev, diraction) {
+  ev.preventDefault()
+  setTxtAling(diraction)
+  renderMeme()
+}
+function onUpdateFontFamily(value) {
+  setFontFamily(value)
+  renderMeme()
+}
 
-function onChangeColor(color) {
-  setColor(color)
+function onOpenColor(elLabel) {
+  console.log(elLabel)
+  var labelID
+
+  elLabel.click(() => {
+    labelID = elLabel.attr('for')
+    document.querySelector('#' + labelID).trigger('click')
+    document.querySelector('#' + labelID).hidden = false
+  })
+}
+
+function onChangeTxtColor(elPalate, color) {
+  elPalate.hidden = true
+  setColor(color, 'txt')
+  renderMeme()
+}
+
+function onChangeStrokeColor(elPalate, color) {
+  elPalate.hidden = true
+  setColor(color, 'stroke')
   renderMeme()
 }
 

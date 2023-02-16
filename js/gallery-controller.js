@@ -5,6 +5,7 @@ function renderGallery() {
   const imgs = getImgs()
   var strHTMLs =
     '<button class="btn btn-random flex" onclick="onMakeMeme()">Random Meme</button>'
+
   strHTMLs += imgs
     .map(
       (img) =>
@@ -13,7 +14,7 @@ function renderGallery() {
     src="img/${img.id}.JPEG" alt="" />
   `)
     )
-    .join()
+    .join('')
 
   elGallery.innerHTML = strHTMLs
   elGallery.classList.remove('hide')

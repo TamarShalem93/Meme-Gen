@@ -1,20 +1,31 @@
 .btn {
   border-radius: 10px;
-  border: 2px var(--clr-3) solid;
+  border: 2px var(--clr-primary) solid;
   background-color: var(--clr-1);
   cursor: pointer;
-  color: var(--clr-3);
+  color: var(--clr-primary);
   text-align: center;
+
+  height: inherit;
+  width: fit-content;
 
   font-size: 1em;
   padding: 0.625em 1.625em;
-  transition: all 0.4;
+  margin: 10px;
+  margin: auto;
+  margin-bottom: 5px;
+  transition: all 0.4s;
 }
 
 .btn:hover {
- opacity: 0.7;
+  color: var(--clr1);
+  font-weight: 700;
+  
+  border-color: var(--clr1);
+  
 }
 
 .btn-random{
   margin-inline-start: auto;
 }
+

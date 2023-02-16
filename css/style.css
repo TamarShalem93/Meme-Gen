@@ -15,6 +15,8 @@
 @import "components/control-box.css";
 @import "components/gallery.css";
 @import "components/user-msg.css";
+@import "components/input.css";
+
 
 /* MEDIA QUERIS */
 @import "setup/mq.css";
