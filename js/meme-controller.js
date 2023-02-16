@@ -12,6 +12,7 @@ function renderMeme() {
   document.querySelector('.gallery').classList.add('hide')
   document.querySelector('.main-canvas-continer').classList.remove('hide')
   setCanvas()
+  renderSavedMemes()
 }
 
 function setCanvas() {
@@ -32,6 +33,8 @@ function loadImage(meme) {
   img.src = meme.src
   img.onload = () => {
     renderImg(img)
+    gCtx.imageSmoothingEnabled = true
+    gCtx.imageSmoothingQuality = 'high'
     drawText(meme.lines)
   }
 }
@@ -129,7 +132,6 @@ function onMove(ev) {
   moveLine(dx, dy)
 
   gStartPos = pos
-  // The canvas is render again after every move
   renderMeme()
 }
 

@@ -61,16 +61,19 @@
             class="btn btn-font-size"
             onclick="onChangeFontSize(event,-1)"
           >
-            -A
+            <i class="fa-solid fa-a"></i> -
           </button>
           <button
             class="btn btn-font-size"
             onclick="onChangeFontSize(event, 1)"
           >
-            A+
+            <i class="fa-solid fa-a"></i> +
           </button>
           <button class="btn btn-change-line" onclick="onChangeLine()">
-            Change line
+            <i class="fa-solid fa-arrow-down-up-across-line"></i>
+          </button>
+          <button class="btn btn-save" onclick="onSaveImg()">
+            <i class="fa-solid fa-floppy-disk"></i>
           </button>
           <button class="btn btn-share" onclick="onShareImg()">
             <i class="fa-solid fa-share"></i>
@@ -86,17 +89,21 @@
             ><i class="fa-solid fa-download"></i
           ></a>
         </section>
+        <section class="saved-memes-gallery"></section>
       </section>
 
       <section class="gallery"></section>
     </main>
 
+    <div class="user-msg"></div>
+
     <script src="js/utils.js"></script>
     <script src="js/service/meme.service.js"></script>
-    <script src="js/service/meme.service.js"></script>
+    <script src="js/service/storage.service.js"></script>
     <script src="js/main-controller.js"></script>
     <script src="js/gallery-controller.js"></script>
     <script src="js/meme-controller.js"></script>
+    <script src="js/saved-meme-controller.js"></script>
     <script src="js/share-facbook.js"></script>
     <script src="js/upload-from-local.js"></script>
   </body>

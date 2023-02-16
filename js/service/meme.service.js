@@ -1,5 +1,5 @@
 'use strict'
-
+const STORAGE_KEY = 'memeDB'
 var gImgs = []
 var gMemes = []
 var gKeywordSearchCountMap = { funny: 12, cat: 16, baby: 2 }
@@ -60,7 +60,6 @@ function creatMeme(imgId, src) {
       ),
     ],
   }
-  console.log(gMeme)
 }
 function updateMemeSrc(src) {
   gMeme.src = src
@@ -151,9 +150,36 @@ function setLineDrag(isDrag) {
   gMeme.lines[gMeme.selectedLineIdx].isDrag = isDrag
 }
 
-// Move the circle in a delta, diff from the pervious pos
 function moveLine(dx, dy) {
   const currLine = gMeme.lines[gMeme.selectedLineIdx]
   currLine.x += dx
   currLine.y += dy
+}
+
+function saveMeme(meme) {
+  gMemes.push(meme)
+  _saveMemesToStorage()
+}
+
+function deleteSavedMeme(memeId) {
+  const memeIdx = getMemeId(memeId)
+  gMemes.splice(memeIdx, 1)
+  _saveMemesToStorage()
+}
+
+function getMemeId(memeId) {
+  const meme = gMemes.findIndex((meme) => memeId === meme.selectedImgId)
+  return meme
+}
+
+function getSevedMemes() {
+  return _loadMemesFromStorage()
+}
+
+function _saveMemesToStorage() {
+  saveToStorage(STORAGE_KEY, gMemes)
+}
+
+function _loadMemesFromStorage() {
+  return loadFromStorage(STORAGE_KEY)
 }
