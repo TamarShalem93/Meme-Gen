@@ -87,6 +87,19 @@ function setLineTxt(txt) {
 function setImg(imgId) {
   gMeme.selectedImgId = imgId
 }
+function addLine() {
+  gMeme.lines.push(
+    creatLine(
+      50,
+      200,
+      gTxts[getRandomInt(0, 14)],
+      getRandomInt(10, 40),
+      getRandomColor(),
+      getRandomColor()
+    )
+  )
+  console.log(gMeme)
+}
 
 function setFontFamily(font) {
   gMeme.lines[gMeme.selectedLineIdx].font = font
@@ -175,7 +188,9 @@ function saveMeme(meme) {
   gMemes.push(meme)
   _saveMemesToStorage()
 }
-
+function getMemes() {
+  return gMemes
+}
 function deleteSavedMeme(memeId) {
   const memeIdx = getMemeId(memeId)
   gMemes.splice(memeIdx, 1)

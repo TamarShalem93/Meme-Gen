@@ -20,3 +20,18 @@ function onOpenSection(section, elCurrNav) {
   }
   gCurrNav = section
 }
+
+function openModal() {
+  const modal = document.querySelector('.modal')
+  modal.classList.remove('hide')
+  const memes = getMemes()
+
+  if (memes.length === 0) return
+
+  renderSavedMemes()
+}
+
+function closeModal() {
+  const modal = document.querySelector('.modal')
+  modal.classList.add('hide')
+}

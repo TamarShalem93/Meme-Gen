@@ -27,12 +27,14 @@ function onImgSelect(imgId) {
   const elNavMeme = document.querySelector('.nav-meme')
   onOpenSection('meme', elNavMeme)
   renderMeme()
+  closeModal()
 }
 
 function onMakeMeme() {
   creatMeme()
   updateNav()
   renderMeme()
+  closeModal()
 }
 
 function updateNav() {

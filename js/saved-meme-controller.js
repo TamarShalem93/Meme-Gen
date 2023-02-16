@@ -2,16 +2,17 @@
 
 function renderSavedMemes() {
   const memes = getSevedMemes()
-  var strHTMLs = memes
+  var strHTMLs = `<button class="btn btn-close-modal" onclick="closeModal()">X</button>`
+  strHTMLs += memes
     .map(
       (meme) =>
         (meme = `
-        <button class="btn-dalete-meme" onclick="deleteSevedMeme(${meme.selectedImgId})"><i class="fa-solid fa-trash-can"></i></button>
+         <button class="btn btn-dalete-meme" onclick="deleteSevedMeme(${meme.selectedImgId})"><i class="fa-solid fa-trash-can"></i></button>
     <img onclick="onImgSelect(${meme.selectedImgId})"
     src="${meme.src}" alt="" />
   `)
     )
-    .join()
+    .join('')
 
   document.querySelector('.saved-memes-gallery').innerHTML = strHTMLs
 }

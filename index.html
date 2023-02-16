@@ -15,7 +15,6 @@
     <header class="main-header full main-layout">
       <section class="nav flex space-between align-center">
         <div class="logo">Miley's Meme</div>
-        <div type="button" class="toggle-menu" onclick="toggleMenu()"></div>
         <nav class="main-nav clean-list">
           <ul class="main-menu clean-list flex">
             <li
@@ -29,6 +28,7 @@
         </nav>
       </section>
     </header>
+    <div class="main-screen" onclick="closeModal()"></div>
     <main class="main-continer">
       <section class="main-canvas-continer main-container-layout hide">
         <section class="canvas-container">
@@ -56,6 +56,10 @@
           <div class="box">
             <button class="btn btn-change-line" onclick="onChangeLine()">
               <i class="fa-solid fa-arrow-down-up-across-line"></i>
+            </button>
+
+            <button class="btn btn-add-line" onclick="onAddLine()">
+              <i class="fa-solid fa-plus"></i>
             </button>
 
             <button class="btn btn-delete-canvas" onclick="clearCanvas()">
@@ -228,7 +232,15 @@
             ></a>
           </div>
         </section>
-        <section class="saved-memes-gallery"></section>
+        <button class="btn btn-seved-memes" onclick="openModal()">
+          Your Memes
+        </button>
+
+        <section class="modal hide">
+          <section class="saved-memes-gallery"><p> You Don't Have Memes yet... </br> Let's creat one! </p>
+            <button class="btn" onclick="onMakeMeme()"> Click Me(me)!</button>
+          </section>
+        </section>
       </section>
 
       <section class="gallery gallery-layout"></section>

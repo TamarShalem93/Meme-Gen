@@ -12,7 +12,6 @@ function renderMeme() {
   document.querySelector('.gallery').classList.add('hide')
   document.querySelector('.main-canvas-continer').classList.remove('hide')
   setCanvas()
-  renderSavedMemes()
 }
 
 function setCanvas() {
@@ -95,6 +94,11 @@ function onOpenColor(elLabel) {
     document.querySelector('#' + labelID).trigger('click')
     document.querySelector('#' + labelID).hidden = false
   })
+}
+
+function onAddLine() {
+  addLine()
+  renderMeme()
 }
 
 function onChangeTxtColor(elPalate, color) {
