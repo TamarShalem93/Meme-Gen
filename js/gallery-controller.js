@@ -4,7 +4,7 @@ function renderGallery() {
   const elGallery = document.querySelector('.gallery')
   const imgs = getImgs()
   var strHTMLs =
-    '<button class="btn btn-random" onclick="onMakeMeme()">Random Meme</button>'
+    '<button class="btn btn-random flex" onclick="onMakeMeme()">Random Meme</button>'
   strHTMLs += imgs
     .map(
       (img) =>
@@ -21,8 +21,20 @@ function renderGallery() {
 }
 
 function onImgSelect(imgId) {
+  creatMeme(imgId)
   setImg(imgId)
   const elNavMeme = document.querySelector('.nav-meme')
   onOpenSection('meme', elNavMeme)
   renderMeme()
+}
+
+function onMakeMeme() {
+  creatMeme()
+  updateNav()
+  renderMeme()
+}
+
+function updateNav() {
+  const elNavMeme = document.querySelector('.nav-meme')
+  onOpenSection('meme', elNavMeme)
 }

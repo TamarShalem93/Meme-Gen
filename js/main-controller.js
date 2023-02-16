@@ -1,6 +1,11 @@
 'use strict'
 var gCurrNav
 
+function init() {
+  createImgs()
+  renderGallery()
+}
+
 function onOpenSection(section, elCurrNav) {
   if (gCurrNav === section) return
   if (section === 'gallery') {

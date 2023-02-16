@@ -3,11 +3,18 @@
   border: 2px var(--clr-3) solid;
   background-color: var(--clr-1);
   cursor: pointer;
+  color: var(--clr-3);
+  text-align: center;
 
   font-size: 1em;
   padding: 0.625em 1.625em;
+  transition: all 0.4;
 }
 
 .btn:hover {
  opacity: 0.7;
+}
+
+.btn-random{
+  margin-inline-start: auto;
 }

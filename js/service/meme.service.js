@@ -20,30 +20,55 @@ var gTxts = [
   "POV: I didn't wanna leave you",
   "POV:I didn't wanna lie",
 ]
-var gMeme = {
-  selectedImgId: 1,
-  selectedLineIdx: 0,
-  lines: [
-    {
-      x: 200,
-      y: 100,
-      txt: 'I sometimes eat Falafel',
-      size: 20,
-      align: 'left',
-      color: 'red',
-    },
-    {
-      x: 100,
-      y: 300,
-      txt: 'I love CSS',
-      size: 50,
-      align: 'rigth',
-      color: 'blue',
-    },
-  ],
+var gMeme = {}
+
+function creatLine(x, y, txt, size, color) {
+  return {
+    x,
+    y,
+    txt,
+    size,
+    align: 'left',
+    color,
+    isDrag: false,
+  }
 }
 
-createImgs()
+function creatMeme(imgId, src) {
+  if (!imgId) imgId = getRandomInt(1, gImgs.length)
+
+  if (!src) src = `img/${imgId}.JPEG`
+
+  gMeme = {
+    selectedImgId: imgId,
+    selectedLineIdx: 0,
+    src,
+    lines: [
+      creatLine(
+        50,
+        100,
+        gTxts[getRandomInt(0, 14)],
+        getRandomInt(10, 40),
+        getRandomColor()
+      ),
+      creatLine(
+        50,
+        300,
+        gTxts[getRandomInt(0, 14)],
+        getRandomInt(10, 40),
+        getRandomColor()
+      ),
+    ],
+  }
+  console.log(gMeme)
+}
+function updateMemeSrc(src) {
+  gMeme.src = src
+}
+function updateMemeId() {
+  gMeme.selectedImgId = getRandomInt(100, 999)
+}
+
 function getMeme() {
   return gMeme
 }
@@ -65,46 +90,13 @@ function setColor(color) {
 }
 
 function setFontSize(diff) {
-  let fontSize = 1
-  if (diff === '-') fontSize = -1
-  gMeme.lines[gMeme.selectedLineIdx].size += fontSize
+  gMeme.lines[gMeme.selectedLineIdx].size += diff * 2
 }
 
 function setCurrLine() {
   gMeme.selectedLineIdx++
   if (gMeme.selectedLineIdx === gMeme.lines.length) gMeme.selectedLineIdx = 0
 }
-
-function creatMeme(selectedImgId, selectedLineIdx, lines) {
-  return {
-    selectedImgId,
-    selectedLineIdx,
-    lines,
-  }
-}
-
-function creatLines(
-  txt = gTxts[getRandomInt(0, 14)],
-  size = getRandomInt(10, 100),
-  color = getRandomColor(),
-  length = getRandomInt(1, 2)
-) {
-  let lines = []
-
-  for (var i = 0; i < length; i++) {
-    lines.push({
-      x: i + 100,
-      y: i + 200,
-      txt,
-      size,
-      align: 'center',
-      color,
-    })
-  }
-  return lines
-}
-
-function creatMemes() {}
 
 function createImgs() {
   for (var i = 1; i < 8; i++) {
@@ -118,4 +110,50 @@ function _creatImg(id) {
     url: `img/${id}.jpg`,
     keywords: ['funny', 'cat'],
   }
+}
+
+function getLine() {
+  return gMeme.lines[gMeme.selectedLineIdx]
+}
+
+function isLineClicked(clickedPos) {
+  const currLine = gMeme.lines[gMeme.selectedLineIdx]
+  var x = currLine.x
+  var y = currLine.y
+
+  const lineMeasure = gCtx.measureText(currLine)
+  const currLineWidth = lineMeasure.width
+  const currLineHight =
+    lineMeasure.fontBoundingBoxAscent + lineMeasure.fontBoundingBoxDescent
+
+  if (currLine.align === 'right')
+    return (
+      (clickedPos.x < x && clickedPos.x > x + currLineWidth) ||
+      (clickedPos.y < y && clickedPos.y > y + currLineHight)
+    )
+
+  if (currLine.align === 'left')
+    return (
+      (clickedPos.x > x && clickedPos.x < x + currLineWidth) ||
+      (clickedPos.y > y && clickedPos.y < y + currLineHight)
+    )
+
+  if (currLine.align === 'center')
+    return (
+      (clickedPos.x < x + currLineWidth / 2 &&
+        clickedPos.x > x - currLineWidth / 2) ||
+      (clickedPos.y < y + currLineHight / 2 &&
+        clickedPos.y > y - currLineHight / 2)
+    )
+}
+
+function setLineDrag(isDrag) {
+  gMeme.lines[gMeme.selectedLineIdx].isDrag = isDrag
+}
+
+// Move the circle in a delta, diff from the pervious pos
+function moveLine(dx, dy) {
+  const currLine = gMeme.lines[gMeme.selectedLineIdx]
+  currLine.x += dx
+  currLine.y += dy
 }

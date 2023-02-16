@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/711d94845a.js"
+      crossorigin="anonymous"
+    ></script>
     <link rel="stylesheet" href="css/style.css" />
     <title>Miley's Meme</title>
   </head>
@@ -14,22 +18,29 @@
         <div type="button" class="toggle-menu" onclick="toggleMenu()"></div>
         <nav class="main-nav clean-list">
           <ul class="main-menu clean-list flex">
-            <li class="nav-meme active" onclick="onOpenSection('meme', this)">
-              Meme
-            </li>
-            <li class="nav-gallery" onclick="onOpenSection('gallery', this)">
+            <li
+              class="nav-gallery active"
+              onclick="onOpenSection('gallery', this)"
+            >
               Gallery
             </li>
+            <li class="nav-meme" onclick="onOpenSection('meme', this)">Meme</li>
           </ul>
         </nav>
       </section>
     </header>
     <main class="main-continer">
-      <section class="main-canvas-continer main-container-layout">
+      <section class="main-canvas-continer main-container-layout hide">
         <section class="canvas-container">
           <canvas id="meme-canvas" width="400" height="400"></canvas>
         </section>
         <section class="control-box box-layout">
+          <input
+            type="file"
+            class="file-input btn"
+            name="image"
+            onchange="onImgInput(event)"
+          />
           <input
             oninput="onTxtInput(event, this.value)"
             type="text"
@@ -46,19 +57,38 @@
             />
           </button>
 
-          <button class="btn btn-font-size" onclick="onChangeFontSize('-')">
+          <button
+            class="btn btn-font-size"
+            onclick="onChangeFontSize(event,-1)"
+          >
             -A
           </button>
-          <button class="btn btn-font-size" onclick="onChangeFontSize('+')">
+          <button
+            class="btn btn-font-size"
+            onclick="onChangeFontSize(event, 1)"
+          >
             A+
           </button>
           <button class="btn btn-change-line" onclick="onChangeLine()">
             Change line
           </button>
+          <button class="btn btn-share" onclick="onShareImg()">
+            <i class="fa-solid fa-share"></i>
+          </button>
+          <button class="btn" onclick="clearCanvas()">
+            <i class="fa-solid fa-trash-can"></i>
+          </button>
+          <a
+            href="#"
+            class="btn"
+            download="my-img.jpg"
+            onclick="downloadCanvas(this)"
+            ><i class="fa-solid fa-download"></i
+          ></a>
         </section>
       </section>
 
-      <section class="gallery hide"></section>
+      <section class="gallery"></section>
     </main>
 
     <script src="js/utils.js"></script>
@@ -67,5 +97,7 @@
     <script src="js/main-controller.js"></script>
     <script src="js/gallery-controller.js"></script>
     <script src="js/meme-controller.js"></script>
+    <script src="js/share-facbook.js"></script>
+    <script src="js/upload-from-local.js"></script>
   </body>
 </html>
