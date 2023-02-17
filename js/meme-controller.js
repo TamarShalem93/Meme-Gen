@@ -86,7 +86,6 @@ function onUpdateFontFamily(value) {
 }
 
 function onOpenColor(elLabel) {
-  console.log(elLabel)
   var labelID
 
   elLabel.click(() => {
@@ -98,6 +97,8 @@ function onOpenColor(elLabel) {
 
 function onAddLine() {
   addLine()
+  const lines = getLines()
+  updateCurrLine(lines.length - 1)
   renderMeme()
 }
 

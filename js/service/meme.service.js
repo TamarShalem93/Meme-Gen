@@ -89,16 +89,8 @@ function setImg(imgId) {
 }
 function addLine() {
   gMeme.lines.push(
-    creatLine(
-      50,
-      200,
-      gTxts[getRandomInt(0, 14)],
-      getRandomInt(10, 40),
-      getRandomColor(),
-      getRandomColor()
-    )
+    creatLine(50, 200, gTxts[getRandomInt(0, 14)], 20, '#fff', '#333')
   )
-  console.log(gMeme)
 }
 
 function setFontFamily(font) {
@@ -116,13 +108,16 @@ function setFontSize(diff) {
 }
 
 function setTxtAling(diraction) {
-  console.log(diraction)
   gMeme.lines[gMeme.selectedLineIdx].align = diraction
 }
 
 function setCurrLine() {
   gMeme.selectedLineIdx++
   if (gMeme.selectedLineIdx === gMeme.lines.length) gMeme.selectedLineIdx = 0
+}
+
+function updateCurrLine(idx) {
+  gMeme.selectedLineIdx = idx
 }
 
 function createImgs() {
@@ -143,35 +138,45 @@ function getLine() {
   return gMeme.lines[gMeme.selectedLineIdx]
 }
 
+function getLines() {
+  return gMeme.lines
+}
+
+function checkLineCliked(line, lineWidth, lineHight, clickedPos) {
+  if (line.align === 'right')
+    return (
+      (clickedPos.x < line.x && clickedPos.x > line.x + lineWidth) ||
+      (clickedPos.y < line.y && clickedPos.y > line.y + lineHight)
+    )
+
+  if (line.align === 'left')
+    return (
+      (clickedPos.x > line.x && clickedPos.x < line.x + lineWidth) ||
+      (clickedPos.y > line.y && clickedPos.y < line.y + lineHight)
+    )
+
+  if (line.align === 'center')
+    return (
+      (clickedPos.x < line.x + lineWidth / 2 &&
+        clickedPos.x > line.x - lineWidth / 2) ||
+      (clickedPos.y < line.y + lineHight / 2 &&
+        clickedPos.y > line.y - lineHight / 2)
+    )
+}
+
 function isLineClicked(clickedPos) {
-  const currLine = gMeme.lines[gMeme.selectedLineIdx]
-  var x = currLine.x
-  var y = currLine.y
-
-  const lineMeasure = gCtx.measureText(currLine)
-  const currLineWidth = lineMeasure.width
-  const currLineHight =
-    lineMeasure.fontBoundingBoxAscent + lineMeasure.fontBoundingBoxDescent
-
-  if (currLine.align === 'right')
-    return (
-      (clickedPos.x < x && clickedPos.x > x + currLineWidth) ||
-      (clickedPos.y < y && clickedPos.y > y + currLineHight)
-    )
-
-  if (currLine.align === 'left')
-    return (
-      (clickedPos.x > x && clickedPos.x < x + currLineWidth) ||
-      (clickedPos.y > y && clickedPos.y < y + currLineHight)
-    )
-
-  if (currLine.align === 'center')
-    return (
-      (clickedPos.x < x + currLineWidth / 2 &&
-        clickedPos.x > x - currLineWidth / 2) ||
-      (clickedPos.y < y + currLineHight / 2 &&
-        clickedPos.y > y - currLineHight / 2)
-    )
+  var isClicked = false
+  gMeme.lines.forEach((line, index) => {
+    const lineMeasure = gCtx.measureText(line)
+    const lineWidth = lineMeasure.width
+    const lineHight =
+      lineMeasure.fontBoundingBoxAscent + lineMeasure.fontBoundingBoxDescent
+    if (checkLineCliked(line, lineWidth, lineHight, clickedPos)) {
+      updateCurrLine(index)
+      isClicked = true
+    }
+  })
+  return isClicked
 }
 
 function setLineDrag(isDrag) {
