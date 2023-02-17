@@ -19,11 +19,15 @@
   
 }
 
-#change-stroke-color,
-#change-txt-color{
-  position:fixed;
-  bottom:0;
-  right: 0;
+.btn-txt-color,
+.btn-color-stroke {
+  position: relative;
+}
+
+input[name="change-txt-color"],
+input[name="change-stroke-color"] {
+  opacity: 0;
+  position: absolute;
 }
                         
 

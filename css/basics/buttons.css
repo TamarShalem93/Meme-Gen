@@ -25,10 +25,13 @@
   
 }
 
-.btn-random, 
-.btn-seved-memes{
+.btn-random{
   margin-inline-start:0 ;
 }
-.btn-seved-memes{
-  margin-top: 20px;
+
+.btn-seved-memes,
+.btn-back{
+  margin: 20px;
  }
+
+ 

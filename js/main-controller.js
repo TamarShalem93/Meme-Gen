@@ -21,17 +21,11 @@ function onOpenSection(section, elCurrNav) {
   gCurrNav = section
 }
 
-function openModal() {
-  const modal = document.querySelector('.modal')
-  modal.classList.remove('hide')
-  const memes = getMemes()
-
-  if (memes.length === 0) return
-
-  renderSavedMemes()
-}
-
-function closeModal() {
-  const modal = document.querySelector('.modal')
-  modal.classList.add('hide')
+function flashMsg(msg) {
+  const el = document.querySelector('.user-msg')
+  el.innerText = msg
+  el.classList.add('open')
+  setTimeout(() => {
+    el.classList.remove('open')
+  }, 3000)
 }

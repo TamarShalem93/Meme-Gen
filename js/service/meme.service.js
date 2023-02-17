@@ -72,6 +72,10 @@ function updateMemeId() {
   gMeme.selectedImgId = getRandomInt(100, 999)
 }
 
+function updateFontSize(line) {
+  line.size = line.size - 5
+}
+
 function getMeme() {
   return gMeme
 }
@@ -84,13 +88,22 @@ function setLineTxt(txt) {
   gMeme.lines[gMeme.selectedLineIdx].txt = txt
 }
 
+function getCurrLineIdx() {
+  return gMeme.selectedLineIdx
+}
+
 function setImg(imgId) {
+  console.log(gMeme)
   gMeme.selectedImgId = imgId
 }
 function addLine() {
   gMeme.lines.push(
     creatLine(50, 200, gTxts[getRandomInt(0, 14)], 20, '#fff', '#333')
   )
+}
+function deleteLine() {
+  const currLineIdx = getCurrLineIdx()
+  gMeme.lines.splice(currLineIdx, 1)
 }
 
 function setFontFamily(font) {
@@ -167,16 +180,31 @@ function checkLineCliked(line, lineWidth, lineHight, clickedPos) {
 function isLineClicked(clickedPos) {
   var isClicked = false
   gMeme.lines.forEach((line, index) => {
-    const lineMeasure = gCtx.measureText(line)
-    const lineWidth = lineMeasure.width
-    const lineHight =
-      lineMeasure.fontBoundingBoxAscent + lineMeasure.fontBoundingBoxDescent
+    const lineWidth = getLineWidth(line)
+    const lineHight = getLineHight(line)
     if (checkLineCliked(line, lineWidth, lineHight, clickedPos)) {
       updateCurrLine(index)
       isClicked = true
     }
   })
   return isClicked
+}
+function isLineInCanvas(line) {
+  const lineWidth = getLineWidth(line)
+  if (line.align === 'right') return line.x + lineWidth < gElCanvas.width
+  if (line.align === 'left') return line.x - lineWidth < gElCanvas.width
+  if (line.align === 'center') return line.x + lineWidth / 2 < gElCanvas.width
+}
+
+function getLineWidth(line) {
+  return gCtx.measureText(line).width
+}
+
+function getLineHight(line) {
+  return (
+    gCtx.measureText(line).fontBoundingBoxAscent +
+    gCtx.measureText(line).fontBoundingBoxDescent
+  )
 }
 
 function setLineDrag(isDrag) {
@@ -193,6 +221,7 @@ function saveMeme(meme) {
   gMemes.push(meme)
   _saveMemesToStorage()
 }
+
 function getMemes() {
   return gMemes
 }

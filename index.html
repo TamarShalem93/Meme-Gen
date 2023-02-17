@@ -62,6 +62,10 @@
               <i class="fa-solid fa-plus"></i>
             </button>
 
+            <button class="btn btn-add-line" onclick="onDeleteLine()">
+              <i class="fa-solid fa-minus"></i>
+            </button>
+
             <button class="btn btn-delete-canvas" onclick="clearCanvas()">
               <i class="fa-solid fa-trash-can"></i>
             </button>
@@ -187,33 +191,30 @@
                 Lucida Console
               </option>
             </select>
-
             <label
               class="btn btn-color-stroke"
               for="change-stroke-color"
               onclick="onOpenColor(this)"
               ><i class="fa-sharp fa-solid fa-s"></i
-            ></label>
-            <input
-              hidden
+            > <input
               type="color"
               name="change-stroke-color"
               id="change-stroke-color"
-              oninput="onChangeStrokeColor(this, this.value)"
-            />
+              oninput="onChangeStrokeColor(this.value)"
+            /></label>
+           
             <label
               class="btn btn-txt-color"
               for="change-txt-color"
               onclick="onOpenColor(this)"
               ><i class="fa-solid fa-palette"></i
-            ></label>
-            <input
-              hidden
+            > <input
               type="color"
               name="change-txt-color"
               id="change-txt-color"
-              oninput="onChangeTxtColor(this, this.value)"
-            />
+              oninput="onChangeTxtColor(this.value)"
+            /></label>
+           
           </div>
           <div class="box">
             <button class="btn btn-save" onclick="onSaveImg()">
@@ -232,16 +233,16 @@
             ></a>
           </div>
         </section>
-        <button class="btn btn-seved-memes" onclick="openModal()">
+        <button class="btn btn-seved-memes" onclick="onToggelGallery()">
           Your Memes
         </button>
 
-        <section class="modal hide">
-          <section class="saved-memes-gallery"><p> You Don't Have Memes yet... </br> Let's creat one! </p>
-            <button class="btn" onclick="onMakeMeme()"> Click Me(me)!</button>
-          </section>
-        </section>
       </section>
+      <!-- <section class="modal hide"> -->
+        <section class="saved-memes-gallery gallery-layout hide"><p> You Don't Have Memes yet... </br> Let's creat one! </p>
+          <button class="btn" onclick="onMakeMeme()"> Click Me(me)!</button>
+        </section>
+      <!-- </section> -->
 
       <section class="gallery gallery-layout"></section>
     </main>

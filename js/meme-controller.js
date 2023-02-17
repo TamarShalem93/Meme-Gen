@@ -17,6 +17,7 @@ function renderMeme() {
 function setCanvas() {
   gElCanvas = document.querySelector('#meme-canvas')
   gCtx = gElCanvas.getContext('2d')
+  // gCtx.rect(0, 0, gElCanvas.width, gElCanvas.height)
   resizeCanvas()
   addListeners()
 }
@@ -58,6 +59,7 @@ function downloadCanvas(elLink) {
 
 function drawText(lines) {
   lines.forEach((line) => {
+    if (!isLineInCanvas(line)) updateFontSize(line)
     gCtx.lineWidth = 1
     gCtx.strokeStyle = `${line.colorStroke}`
     gCtx.fillStyle = `${line.colorTxt}`
@@ -102,14 +104,19 @@ function onAddLine() {
   renderMeme()
 }
 
-function onChangeTxtColor(elPalate, color) {
-  elPalate.hidden = true
+function onDeleteLine() {
+  console.log('hi')
+  deleteLine()
+  renderMeme()
+  flashMsg('Line deleted')
+}
+
+function onChangeTxtColor(color) {
   setColor(color, 'txt')
   renderMeme()
 }
 
-function onChangeStrokeColor(elPalate, color) {
-  elPalate.hidden = true
+function onChangeStrokeColor(color) {
   setColor(color, 'stroke')
   renderMeme()
 }
@@ -155,6 +162,7 @@ function onDown(ev) {
 }
 
 function onMove(ev) {
+  if (!getLine()) return
   const { isDrag } = getLine()
   if (!isDrag) return
 

@@ -19,6 +19,7 @@ function renderGallery() {
   elGallery.innerHTML = strHTMLs
   elGallery.classList.remove('hide')
   document.querySelector('.main-canvas-continer').classList.add('hide')
+  document.querySelector('.saved-memes-gallery').classList.add('hide')
 }
 
 function onImgSelect(imgId) {
@@ -27,14 +28,14 @@ function onImgSelect(imgId) {
   const elNavMeme = document.querySelector('.nav-meme')
   onOpenSection('meme', elNavMeme)
   renderMeme()
-  closeModal()
+  closeSavedGallery()
 }
 
 function onMakeMeme() {
   creatMeme()
   updateNav()
   renderMeme()
-  closeModal()
+  closeSavedGallery()
 }
 
 function updateNav() {
