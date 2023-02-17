@@ -13,14 +13,6 @@
   border-radius: 10px;
   transition: all .4s;
 }
-.saved-meme-img:hover::before{
-  content: "\f2ed";
-  color: red;
-  height: 100px;
-  width: 100px;
-  top: 0;
-  left: 10px;
-}
 
 .saved-meme-img:hover {
   opacity: 0.7;
@@ -43,3 +35,9 @@
 .btn-dalete-meme:hover {
   color:crimson;
 }
+
+.saved-memes-gallery>p{
+  text-align: center;
+  font-size: 4em;
+}
+

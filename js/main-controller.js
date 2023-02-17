@@ -1,5 +1,6 @@
 'use strict'
 var gCurrNav
+var gCurrPage
 
 function init() {
   createImgs()
@@ -19,6 +20,7 @@ function onOpenSection(section, elCurrNav) {
     document.querySelector('.nav-gallery').classList.remove('active')
   }
   gCurrNav = section
+  gCurrPage = section
 }
 
 function flashMsg(msg) {

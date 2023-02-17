@@ -6,9 +6,12 @@ let gIsDrag = false
 const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
 
 function renderMeme() {
+  if (
+    !document.querySelector('.saved-memes-gallery').classList.contains('hide')
+  )
+    return
   const meme = getMeme()
   loadImage(meme)
-
   document.querySelector('.gallery').classList.add('hide')
   document.querySelector('.main-canvas-continer').classList.remove('hide')
   setCanvas()

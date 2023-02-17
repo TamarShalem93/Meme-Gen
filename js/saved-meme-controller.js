@@ -5,7 +5,7 @@ function renderSavedMemes() {
   var strHTMLs
   if (memes.length === 0) {
     strHTMLs = `<p> You Don't Have Memes yet... </br> Let's creat one! </p>
-          <button class="btn" onclick="onMakeMeme()"> Click Me(me)!</button>`
+          <button class="btn btn-make-meme" onclick="onMakeMeme()"> Click Me(me)!</button>`
   } else {
     var strHTMLs = `<button class="btn btn-back flex" onclick="onToggelGallery()">Back <i class="fa-solid fa-arrow-left"></i></button>`
     strHTMLs += memes
