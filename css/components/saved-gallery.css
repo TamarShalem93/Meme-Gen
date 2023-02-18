@@ -1,4 +1,10 @@
-
+.saved-memes-gallery{
+  background-color: var(--clr-primary);
+    padding: 10px;
+    border-radius: 10px;
+    margin-left: 5%;
+    margin-right: 5%;
+}
 .saved-memes-gallery>div {
   width: 200px;
   cursor: pointer;
@@ -6,7 +12,6 @@
   
   position: relative;
   display: inline-block;
-  /* padding-left: 10px; */
 }
 
 .saved-meme-img{
@@ -27,17 +32,21 @@
   font-size: 1.6em;
   border: none;
   background-color: transparent;
-
   transition: all .4s;
-
 }
 
 .btn-dalete-meme:hover {
-  color:crimson;
+  scale: 1.2;
+  color: var(--clr-2);
+  background-image: var(--gradient);
 }
 
 .saved-memes-gallery>p{
   text-align: center;
   font-size: 4em;
+}
+
+.btn-make-meme{
+  display: grid;
 }
 

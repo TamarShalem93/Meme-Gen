@@ -52,15 +52,15 @@ function deleteSevedMeme(memeId) {
 
 function onOpenGallery() {
   updateCurrPage('saved-gallery')
-  document.querySelector('.saved-memes-gallery').classList.add('hide')
+  document.querySelector('.saved-memes-gallery').classList.remove('hide')
 
-  document.querySelector('.main-canvas-continer').classList.remove('hide')
+  document.querySelector('.main-canvas-continer').classList.add('hide')
 
   const memes = getMemes()
 
   if (memes.length === 0) return
 
-  // renderSavedMemes()
+  renderSavedMemes()
 }
 
 function closeSavedGallery() {

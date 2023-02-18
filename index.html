@@ -12,7 +12,7 @@
     <title>Miley's Meme</title>
   </head>
   <body class="main-layout" onload="init()">
-    <header class="main-header full main-layout">
+    <header class="main-header main-layout full">
       <section class="nav flex space-between align-center">
         <div class="logo">Miley's Meme</div>
         <nav class="main-nav clean-list">
@@ -37,7 +37,7 @@
           <div class="box">
             <input
               type="file"
-              class="file-input btn"
+              class="file-input"
               name="image"
               onchange="onImgInput(event)"
             />
@@ -69,6 +69,7 @@
               <i class="fa-solid fa-trash-can"></i>
             </button>
           </div>
+          <div class="font-style-continer">
           <div class="box">
             <button
               class="btn btn-font-small"
@@ -214,6 +215,7 @@
               oninput="onChangeTxtColor(this.value)"
             /></label>
            
+          </div>
           </div>
           <div class="box">
             <button class="btn btn-save" onclick="onSaveImg()">

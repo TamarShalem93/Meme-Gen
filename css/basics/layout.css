@@ -3,9 +3,7 @@
   
 }
 
-.main-container-layout{
-      
-       
+.main-container-layout{      
   display: grid;
   grid-template-areas: 
   "c"
@@ -21,9 +19,9 @@
 
 .gallery-layout{
   display: grid;
+  /* grid-template-columns: 10% 1fr 10%;   */
   place-content: center;
   gap: 30px;
-  
   
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
 }

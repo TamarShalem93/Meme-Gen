@@ -1,33 +1,70 @@
 .control-box{
   grid-area: b;
+ 
+  display: grid;
+  grid-template-columns: 1fr;
   background-color: var(--clr-primary);
-  padding: 20px 40px;
-  width: 450px;
-  height: 460px;
+  padding: 20px;
+  width: 400px;
+  height: 400px;
   border-radius: 40px;
 }
 
 .box{
-  display: flex;
-  flex-wrap: wrap;
-  margin-bottom: 5px;
-  position: relative;
-  
+  background-color: var(--grey-clr1);
+  display: grid;
+  grid-auto-flow: column;
 }
 
-.control-box>input {
+.box>input[type="file"]{
   box-shadow: 1px 5px 0 0 #bbc4d1,
   inset 0 5px 0 #fff;
-  border-radius: 28px;
-  background-color: var(--grey-clr-1);
-  width: 90%;
+  background-image: var(--gradient);
 }
 
-
-.btn-txt-color,
-.btn-color-stroke {
-  position: relative;
+.box>input[type="text"],
+.box>select {
+  box-shadow: 1px 5px 0 0 #bbc4d1,
+  inset 0 5px 0 #fff;
+  
+  background-color: var(--clr-2);
+  border: none;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 500;
+  font-size: 1.5rem;
 }
+
+.box>input[type="text"]{
+  border-radius: 40px;
+}
+
+.box>select{
+  border-radius: 10px;
+  width: 150px;
+}
+
+.box>.btn,
+.box>label{
+  width: 40px;
+  height:40px;
+  border-radius: 10px;
+  border: none;
+  
+  font-size: 16px;  
+
+}
+
+.box >.btn:not(label, a){
+  box-shadow: 1px 3px 0px 0px rgb(0 0 0 / 25%), inset 0 3px 0 rgb(255 255 255 / 20%);
+  text-align: center;
+  padding: 0;
+}
+
+.box>label{
+  padding: 10px;
+}
+
 
 input[name="change-txt-color"],
 input[name="change-stroke-color"] {
@@ -35,3 +72,17 @@ input[name="change-stroke-color"] {
   position: absolute;
 }
                         
+.font-style-continer{
+   width: 100%;
+  background-color: var(--clr2);
+  padding: clamp(10px, 1vw, 20px);
+  border-radius: 10px;
+  position: relative;
+  margin-bottom: 10px;
+
+}
+
+.font-style-continer> .box> .btn{
+  padding: 10px;
+  background-color: var(--clr-2);
+}

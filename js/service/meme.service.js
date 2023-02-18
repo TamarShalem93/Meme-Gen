@@ -98,7 +98,6 @@ function getCurrLineIdx() {
 }
 
 function setImg(imgId) {
-  console.log(gMeme)
   gMeme.selectedImgId = imgId
 }
 function addLine() {
