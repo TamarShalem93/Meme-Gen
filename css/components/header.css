@@ -1,48 +1,39 @@
 .main-header {
-  position: relative;
-  background-color: var(--clr-1);
-  color: var(--clr-primary);
-  z-index: 1;
-  box-shadow: inset 0px -6px 0 var(--clr-primary);
-  margin: 10px 10px 40px 10px;
-  
+  margin: 20px;
+  background-image:var(--gradient);
+  color: var(--clr-2);
+  border-radius: 40px;
+ 
 }
 
 .main-header .nav {
-  height: 100%;
+  height: var(--nav-height);
 }
 
 .main-header .main-nav li {
-  border-inline-end: 1px solid var(--clr1);
-  width: var(--nav-height);
-  height: var(--nav-height);
+  display: flex;
   align-items: center;
   justify-content: center;
-    
-  text-transform: uppercase;
-  display: flex;
-  color: inherit;
+  padding: 5px 20px;
+  width: var(--nav-height);
+
+  border-radius: 20px;
   text-decoration: none;
   cursor: pointer;
     
   transition: box-shadow 0.4s;
 }
 
-.main-header .main-nav li:first-child {
-  border-inline-start: 1px solid var(--clr1);
+.main-nav li:first-child {
+margin-inline-end: 30px;
 }
 
-/* .main-header .main-nav a {
-
-
-} */
 
 .main-header .main-nav li.active {
-  box-shadow: inset 0 -6px 0 var(--clr1);
-  color: var(--clr1);
-  /* cursor: pi; */
+  background-color: var(--clr-2);
+  color: var(--clr2);
 }
 
 .main-header .main-nav li:hover {
-  box-shadow: inset 0 -6px 0 var(--clr1);
+  box-shadow: inset 5px -6px 5px var(--clr1);
 }

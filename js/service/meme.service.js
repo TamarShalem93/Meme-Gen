@@ -1,5 +1,6 @@
 'use strict'
 const STORAGE_KEY = 'memeDB'
+var gCurrPage = 'gallery'
 var gImgs = []
 var gMemes = []
 var gKeywordSearchCountMap = { funny: 12, cat: 16, baby: 2 }
@@ -89,6 +90,9 @@ function setLineTxt(txt) {
   gMeme.lines[gMeme.selectedLineIdx].txt = txt
 }
 
+function getCurrPage() {
+  return gCurrPage
+}
 function getCurrLineIdx() {
   return gMeme.selectedLineIdx
 }
@@ -132,6 +136,10 @@ function setCurrLine() {
 
 function updateCurrLine(idx) {
   gMeme.selectedLineIdx = idx
+}
+
+function updateCurrPage(page) {
+  gCurrPage = page
 }
 
 function createImgs() {

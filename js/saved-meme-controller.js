@@ -1,28 +1,36 @@
 'use strict'
+const _gElGallery = document.querySelector('.saved-memes-gallery')
 
 function renderSavedMemes() {
   const memes = getSevedMemes()
+
   var strHTMLs
   if (memes.length === 0) {
-    strHTMLs = `<p> You Don't Have Memes yet... </br> Let's creat one! </p>
-          <button class="btn btn-make-meme" onclick="onMakeMeme()"> Click Me(me)!</button>`
-  } else {
-    var strHTMLs = `<button class="btn btn-back flex" onclick="onToggelGallery()">Back <i class="fa-solid fa-arrow-left"></i></button>`
-    strHTMLs += memes
-      .map(
-        (meme) =>
-          (meme = `
+    renderEmptyGallery()
+    return
+  }
+  var strHTMLs = `<button class="btn btn-back flex" onclick="onToggelGallery()"><i class="fa-solid fa-arrow-left"></i> Back </button>`
+  strHTMLs += memes
+    .map(
+      (meme) =>
+        (meme = `
         <div>
     <img class="saved-meme-img" onclick="onImgSelect(${meme.selectedImgId})"
     src="${meme.src}" alt="" />
      <button class="btn btn-dalete-meme" onclick="deleteSevedMeme(${meme.selectedImgId})"><i class="fa-solid fa-trash-can"></i></button>
      </div>
   `)
-      )
-      .join('')
-  }
+    )
+    .join('')
 
-  document.querySelector('.saved-memes-gallery').innerHTML = strHTMLs
+  _gElGallery.innerHTML = strHTMLs
+  _gElGallery.classList.add('gallery-layout')
+}
+
+function renderEmptyGallery() {
+  _gElGallery.classList.remove('gallery-layout')
+  _gElGallery.innerHTML = `<p> You Don't Have Memes yet... </br> Let's creat one! </p>
+          <button class="btn btn-make-meme" onclick="onMakeMeme()"> Click Me(me)!</button>`
 }
 
 function onSaveImg() {
@@ -42,10 +50,11 @@ function deleteSevedMeme(memeId) {
   flashMsg('Meme deleted')
 }
 
-function onToggelGallery() {
-  document.querySelector('.saved-memes-gallery').classList.toggle('hide')
+function onOpenGallery() {
+  updateCurrPage('saved-gallery')
+  document.querySelector('.saved-memes-gallery').classList.add('hide')
 
-  document.querySelector('.main-canvas-continer').classList.toggle('hide')
+  document.querySelector('.main-canvas-continer').classList.remove('hide')
 
   const memes = getMemes()
 
@@ -58,6 +67,7 @@ function closeSavedGallery() {
   document.querySelector('.saved-memes-gallery').classList.add('hide')
 
   document.querySelector('.main-canvas-continer').classList.remove('hide')
+  updateCurrPage('meme')
 }
 
 // function closeModal() {

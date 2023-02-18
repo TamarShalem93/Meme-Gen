@@ -1,6 +1,5 @@
 'use strict'
 var gCurrNav
-var gCurrPage
 
 function init() {
   createImgs()
@@ -10,17 +9,18 @@ function init() {
 function onOpenSection(section, elCurrNav) {
   if (gCurrNav === section) return
   if (section === 'gallery') {
+    updateCurrPage(section)
     renderGallery()
     elCurrNav.classList.add('active')
     document.querySelector('.nav-meme').classList.remove('active')
   }
   if (section === 'meme') {
+    updateCurrPage(section)
     renderMeme()
     elCurrNav.classList.add('active')
     document.querySelector('.nav-gallery').classList.remove('active')
   }
   gCurrNav = section
-  gCurrPage = section
 }
 
 function flashMsg(msg) {

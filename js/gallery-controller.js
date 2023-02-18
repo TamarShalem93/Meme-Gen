@@ -20,6 +20,7 @@ function renderGallery() {
   elGallery.classList.remove('hide')
   document.querySelector('.main-canvas-continer').classList.add('hide')
   document.querySelector('.saved-memes-gallery').classList.add('hide')
+  updateCurrPage('gallery')
 }
 
 function onImgSelect(imgId) {

@@ -28,8 +28,7 @@
         </nav>
       </section>
     </header>
-    <div class="main-screen" onclick="closeModal()"></div>
-    <main class="main-continer">
+      <main>
       <section class="main-canvas-continer main-container-layout hide">
         <section class="canvas-container">
           <canvas id="meme-canvas" width="400" height="400"></canvas>
@@ -233,19 +232,16 @@
             ></a>
           </div>
         </section>
-        <button class="btn btn-seved-memes" onclick="onToggelGallery()">
+        <button class="btn btn-seved-memes" onclick="onOpenGallery()">
           Your Memes
         </button>
 
       </section>
-      <!-- <section class="modal hide"> -->
-        <section class="saved-memes-gallery gallery-layout hide">
-          
+        <section class="saved-memes-gallery hide">          
           <p> You Don't Have Memes yet... </br> Let's creat one! </p>
           <button class="btn btn-make-meme" onclick="onMakeMeme()"> Click Me(me)!</button>
-          
         </section>
-      <!-- </section> -->
+      
 
       <section class="gallery gallery-layout"></section>
     </main>

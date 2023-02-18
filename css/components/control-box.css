@@ -1,14 +1,10 @@
-.control-box>*{
-  margin: auto;
-  
-  
-}
-
 .control-box{
   grid-area: b;
-  background-color: var(--clr-2);
-  padding: 20px;
-  border-radius: 10px;
+  background-color: var(--clr-primary);
+  padding: 20px 40px;
+  width: 450px;
+  height: 460px;
+  border-radius: 40px;
 }
 
 .box{
@@ -18,6 +14,15 @@
   position: relative;
   
 }
+
+.control-box>input {
+  box-shadow: 1px 5px 0 0 #bbc4d1,
+  inset 0 5px 0 #fff;
+  border-radius: 28px;
+  background-color: var(--grey-clr-1);
+  width: 90%;
+}
+
 
 .btn-txt-color,
 .btn-color-stroke {
@@ -30,4 +35,3 @@ input[name="change-stroke-color"] {
   position: absolute;
 }
                         
-

@@ -2,14 +2,11 @@
 
 let gElCanvas, gCtx
 let gStartPos = { x: null, y: null }
-let gIsDrag = false
 const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
 
 function renderMeme() {
-  if (
-    !document.querySelector('.saved-memes-gallery').classList.contains('hide')
-  )
-    return
+  const currPage = getCurrPage()
+  if (currPage !== 'meme') return
   const meme = getMeme()
   loadImage(meme)
   document.querySelector('.gallery').classList.add('hide')
@@ -20,8 +17,6 @@ function renderMeme() {
 function setCanvas() {
   gElCanvas = document.querySelector('#meme-canvas')
   gCtx = gElCanvas.getContext('2d')
-  // gCtx.rect(0, 0, gElCanvas.width, gElCanvas.height)
-  resizeCanvas()
   addListeners()
 }
 
@@ -138,10 +133,7 @@ function onChangeLine() {
 function addListeners() {
   addMouseListeners()
   addTouchListeners()
-  window.addEventListener('resize', () => {
-    resizeCanvas()
-    renderMeme()
-  })
+  window.addEventListener('resize', renderMeme)
 }
 
 function addMouseListeners() {
