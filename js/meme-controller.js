@@ -62,7 +62,8 @@ function downloadCanvas(elLink) {
 
 function drawText(lines) {
   lines.forEach((line) => {
-    if (!isLineInCanvas(line)) updateFontSize(line)
+    // console.log(isLineInCanvas(line))
+    // if (isLineInCanvas(line) === false) updateFontSize(line)
     gCtx.lineWidth = 1
     gCtx.strokeStyle = `${line.colorStroke}`
     gCtx.fillStyle = `${line.colorTxt}`

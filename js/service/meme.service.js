@@ -47,18 +47,18 @@ function creatMeme(imgId, src) {
     src,
     lines: [
       creatLine(
-        50,
+        10,
         100,
         gTxts[getRandomInt(0, 14)],
-        getRandomInt(10, 40),
+        getRandomInt(10, 30),
         getRandomColor(),
         getRandomColor()
       ),
       creatLine(
-        50,
+        10,
         300,
         gTxts[getRandomInt(0, 14)],
-        getRandomInt(10, 40),
+        getRandomInt(10, 30),
         getRandomColor(),
         getRandomColor()
       ),
@@ -73,7 +73,8 @@ function updateMemeId() {
 }
 
 function updateFontSize(line) {
-  line.size = line.size - 5
+  console.log('update')
+  line.size = line.size - 10
 }
 
 function getMeme() {
@@ -159,7 +160,7 @@ function checkLineCliked(line, lineWidth, lineHight, clickedPos) {
   if (line.align === 'right')
     return (
       (clickedPos.x < line.x && clickedPos.x > line.x + lineWidth) ||
-      (clickedPos.y < line.y && clickedPos.y > line.y + lineHight)
+      (clickedPos.y > line.y && clickedPos.y < line.y + lineHight)
     )
 
   if (line.align === 'left')
@@ -191,9 +192,9 @@ function isLineClicked(clickedPos) {
 }
 function isLineInCanvas(line) {
   const lineWidth = getLineWidth(line)
-  if (line.align === 'right') return line.x + lineWidth < gElCanvas.width
-  if (line.align === 'left') return line.x - lineWidth < gElCanvas.width
-  if (line.align === 'center') return line.x + lineWidth / 2 < gElCanvas.width
+  if (line.align === 'right') return line.x + lineWidth > gElCanvas.width
+  if (line.align === 'left') return line.x - lineWidth > gElCanvas.width
+  if (line.align === 'center') return line.x + lineWidth / 2 > gElCanvas.width
 }
 
 function getLineWidth(line) {
