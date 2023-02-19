@@ -1,26 +1,20 @@
 'use strict'
-var gCurrNav
 
 function init() {
   createImgs()
   renderGallery()
 }
 
-function onOpenSection(section, elCurrNav) {
-  if (gCurrNav === section) return
-  if (section === 'gallery') {
-    updateCurrPage(section)
-    renderGallery()
-    elCurrNav.classList.add('active')
-    document.querySelector('.nav-meme').classList.remove('active')
-  }
-  if (section === 'meme') {
-    updateCurrPage(section)
-    renderMeme()
-    elCurrNav.classList.add('active')
-    document.querySelector('.nav-gallery').classList.remove('active')
-  }
-  gCurrNav = section
+function onOpenSection(elCurrNav) {
+  document.querySelector('.active')?.classList.remove('active')
+  elCurrNav.classList.add('active')
+  if (elCurrNav.dataset.section === 'gallery') renderGallery()
+  if (elCurrNav.dataset.section === 'meme') renderMeme()
+}
+
+function onLogo() {
+  const elCurrNav = document.querySelector('.nav-gallery')
+  onOpenSection(elCurrNav)
 }
 
 function flashMsg(msg) {

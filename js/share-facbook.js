@@ -3,7 +3,6 @@ function onShareImg() {
 
   function onSuccess(uploadedImgUrl) {
     const encodedUploadedImgUrl = encodeURIComponent(uploadedImgUrl)
-    console.log(encodedUploadedImgUrl)
     window.open(
       `https://www.facebook.com/sharer/sharer.php?u=${encodedUploadedImgUrl}&t=${encodedUploadedImgUrl}`
     )
@@ -20,7 +19,6 @@ function doUploadImg(imgDataUrl, onSuccess) {
     if (XHR.readyState !== XMLHttpRequest.DONE) return
     if (XHR.status !== 200) return console.error('Error uploading image')
     const { responseText: url } = XHR
-    console.log('Got back live url:', url)
     onSuccess(url)
   }
   XHR.onerror = (req, ev) => {

@@ -14,16 +14,17 @@
   <body class="main-layout" onload="init()">
     <header class="main-header main-layout full">
       <section class="nav flex space-between align-center">
-        <div class="logo">Miley's Meme</div>
+        <div class="logo" onclick="onLogo()"> Miley's Meme</div>
         <nav class="main-nav clean-list">
           <ul class="main-menu clean-list flex">
             <li
               class="nav-gallery active"
-              onclick="onOpenSection('gallery', this)"
+              data-section="gallery"
+              onclick="onOpenSection(this)"
             >
               Gallery
             </li>
-            <li class="nav-meme" onclick="onOpenSection('meme', this)">Meme</li>
+            <li class="nav-meme" data-section="meme" onclick="onOpenSection(this)">Meme</li>
           </ul>
         </nav>
       </section>
@@ -36,6 +37,7 @@
         <section class="control-box box-layout">
           <div class="box">
             <input
+              title="Upload file"
               type="file"
               class="file-input"
               name="image"
@@ -44,6 +46,7 @@
           </div>
           <div class="box">
             <input
+              title="Text"
               oninput="onTxtInput(event, this.value)"
               type="text"
               name="txt"
@@ -53,58 +56,63 @@
             />
           </div>
           <div class="box">
-            <button class="btn btn-change-line" onclick="onChangeLine()">
+            <button title="Change line" class="btn btn-change-line" onclick="onChangeLine()">
               <i class="fa-solid fa-arrow-down-up-across-line"></i>
             </button>
 
-            <button class="btn btn-add-line" onclick="onAddLine()">
+            <button title="Add line" class="btn btn-add-line" onclick="onAddLine()">
               <i class="fa-solid fa-plus"></i>
             </button>
 
-            <button class="btn btn-add-line" onclick="onDeleteLine()">
+            <button title="Delete line" class="btn btn-add-line" onclick="onDeleteLine()">
               <i class="fa-solid fa-minus"></i>
             </button>
 
-            <button class="btn btn-delete-canvas" onclick="clearCanvas()">
+            <button title="Delete meme" class="btn btn-delete-canvas" onclick="clearCanvas()">
               <i class="fa-solid fa-trash-can"></i>
             </button>
           </div>
           <div class="font-style-continer">
           <div class="box">
             <button
+              title="Decrease font"
               class="btn btn-font-small"
               onclick="onChangeFontSize(event,-1)"
             >
               <i class="fa-solid fa-a"></i>-
             </button>
             <button
+              title="Increase font"
               class="btn btn-font-big"
               onclick="onChangeFontSize(event, 1)"
             >
               <i class="fa-solid fa-a"></i>+
             </button>
             <button
+              title="Aling left"
               class="btn btn-aling-left"
               onclick="onAlingTxt(event, 'left')"
             >
               <i class="fa-solid fa-align-left"></i>
             </button>
             <button
+              title="Aling center"
               class="btn btn-aling-center"
               onclick="onAlingTxt(event, 'center')"
             >
               <i class="fa-solid fa-align-center"></i>
             </button>
             <button
+              title="Aling right"
               class="btn btn-aling-right"
               onclick="onAlingTxt(event, 'right')"
             >
               <i class="fa-solid fa-align-right"></i>
             </button>
           </div>
-
           <div class="box">
             <select
+              title="Select font"
               class="font-select"
               id="fontFamilySelect"
               onchange="onUpdateFontFamily(this.value)"
@@ -192,6 +200,7 @@
               </option>
             </select>
             <label
+              title="Change outline text color"
               class="btn btn-color-stroke"
               for="change-stroke-color"
               onclick="onOpenColor(this)"
@@ -204,6 +213,7 @@
             /></label>
            
             <label
+            title="Change text Color"
               class="btn btn-txt-color"
               for="change-txt-color"
               onclick="onOpenColor(this)"
@@ -218,14 +228,15 @@
           </div>
           </div>
           <div class="box">
-            <button class="btn btn-save" onclick="onSaveImg()">
+            <button title="Save meme" class="btn btn-save" onclick="onSaveImg()">
               <i class="fa-solid fa-floppy-disk"></i>
             </button>
-            <button class="btn btn-share" onclick="onShareImg()">
+            <button title="Shere meme" class="btn btn-share" onclick="onShareImg()">
               <i class="fa-solid fa-share"></i>
             </button>
 
             <a
+            title="Download meme"
               href="#"
               class="btn btn-download"
               download="my-img.jpg"

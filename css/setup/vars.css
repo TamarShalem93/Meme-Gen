@@ -4,7 +4,7 @@
   --clr8: #22252c;
   --clr7: #33be6d;
   --clr6: #8f44bb;
-  --clr5:#3e4b68;
+  --clr5:#4b5366;
   --cl4:#5970c1;
   --clr3: #1e7cd3;
   --clr2: #19a59f;
@@ -15,6 +15,7 @@
 
   /* linear-gradien */
   --gradient: linear-gradient(-90deg, var(--clr7) 0%, var(--clr2) 100%);
+  --gradient-black-white: linear-gradient(-90deg, var(--clr-2) 0%, var(--clr8) 100%);
   
   
   /* layout */

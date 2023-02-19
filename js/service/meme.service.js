@@ -51,7 +51,7 @@ function creatMeme(imgId, src) {
         10,
         100,
         gTxts[getRandomInt(0, 14)],
-        getRandomInt(10, 30),
+        getRandomInt(28, 35),
         getRandomColor(),
         getRandomColor()
       ),
@@ -59,7 +59,7 @@ function creatMeme(imgId, src) {
         10,
         300,
         gTxts[getRandomInt(0, 14)],
-        getRandomInt(10, 30),
+        getRandomInt(28, 35),
         getRandomColor(),
         getRandomColor()
       ),
@@ -74,40 +74,65 @@ function updateMemeId() {
 }
 
 function updateFontSize(line) {
-  console.log('update')
   line.size = line.size - 10
+}
+
+function updateCurrLine(idx) {
+  gMeme.selectedLineIdx = idx
 }
 
 function getMeme() {
   return gMeme
 }
 
+function getMemes() {
+  return gMemes
+}
+
 function getImgs() {
   return gImgs
+}
+
+function getCurrPage() {
+  return gCurrPage
+}
+
+function getLine() {
+  return gMeme.lines[gMeme.selectedLineIdx]
+}
+
+function getCurrLineTxt() {
+  return gMeme.lines[gMeme.selectedLineIdx].txt
+}
+function getLines() {
+  return gMeme.lines
+}
+
+function getCurrLineIdx() {
+  return gMeme.selectedLineIdx
+}
+
+function getMemeId(memeId) {
+  const meme = gMemes.findIndex((meme) => memeId === meme.selectedImgId)
+  return meme
+}
+
+function getSevedMemes() {
+  return _loadMemesFromStorage()
 }
 
 function setLineTxt(txt) {
   gMeme.lines[gMeme.selectedLineIdx].txt = txt
 }
 
-function getCurrPage() {
-  return gCurrPage
-}
-function getCurrLineIdx() {
-  return gMeme.selectedLineIdx
-}
-
 function setImg(imgId) {
   gMeme.selectedImgId = imgId
 }
-function addLine() {
-  gMeme.lines.push(
-    creatLine(50, 200, gTxts[getRandomInt(0, 14)], 20, '#fff', '#333')
-  )
-}
-function deleteLine() {
-  const currLineIdx = getCurrLineIdx()
-  gMeme.lines.splice(currLineIdx, 1)
+
+function getSavedMeme(id) {
+  gMemes = _loadMemesFromStorage()
+
+  return gMemes.find((meme) => meme.id === id)
 }
 
 function setFontFamily(font) {
@@ -130,15 +155,25 @@ function setTxtAling(diraction) {
 
 function setCurrLine() {
   gMeme.selectedLineIdx++
+
   if (gMeme.selectedLineIdx === gMeme.lines.length) gMeme.selectedLineIdx = 0
 }
 
-function updateCurrLine(idx) {
-  gMeme.selectedLineIdx = idx
+function setLineDrag(isDrag) {
+  gMeme.lines[gMeme.selectedLineIdx].isDrag = isDrag
 }
 
-function updateCurrPage(page) {
-  gCurrPage = page
+function setSaveMemeId(meme) {
+  meme.id = makeId()
+}
+
+function addLine() {
+  gMeme.lines.push(creatLine(50, 200, 'Your Punch', 28, '#fff', '#333'))
+}
+
+function deleteLine() {
+  const currLineIdx = getCurrLineIdx()
+  gMeme.lines.splice(currLineIdx, 1)
 }
 
 function createImgs() {
@@ -155,68 +190,11 @@ function _creatImg(id) {
   }
 }
 
-function getLine() {
-  return gMeme.lines[gMeme.selectedLineIdx]
-}
-
-function getLines() {
-  return gMeme.lines
-}
-
-function checkLineCliked(line, lineWidth, lineHight, clickedPos) {
-  if (line.align === 'right')
-    return (
-      (clickedPos.x < line.x && clickedPos.x > line.x + lineWidth) ||
-      (clickedPos.y > line.y && clickedPos.y < line.y + lineHight)
-    )
-
-  if (line.align === 'left')
-    return (
-      (clickedPos.x > line.x && clickedPos.x < line.x + lineWidth) ||
-      (clickedPos.y > line.y && clickedPos.y < line.y + lineHight)
-    )
-
-  if (line.align === 'center')
-    return (
-      (clickedPos.x < line.x + lineWidth / 2 &&
-        clickedPos.x > line.x - lineWidth / 2) ||
-      (clickedPos.y < line.y + lineHight / 2 &&
-        clickedPos.y > line.y - lineHight / 2)
-    )
-}
-
-function isLineClicked(clickedPos) {
-  var isClicked = false
-  gMeme.lines.forEach((line, index) => {
-    const lineWidth = getLineWidth(line)
-    const lineHight = getLineHight(line)
-    if (checkLineCliked(line, lineWidth, lineHight, clickedPos)) {
-      updateCurrLine(index)
-      isClicked = true
-    }
-  })
-  return isClicked
-}
 function isLineInCanvas(line) {
   const lineWidth = getLineWidth(line)
   if (line.align === 'right') return line.x + lineWidth > gElCanvas.width
   if (line.align === 'left') return line.x - lineWidth > gElCanvas.width
   if (line.align === 'center') return line.x + lineWidth / 2 > gElCanvas.width
-}
-
-function getLineWidth(line) {
-  return gCtx.measureText(line).width
-}
-
-function getLineHight(line) {
-  return (
-    gCtx.measureText(line).fontBoundingBoxAscent +
-    gCtx.measureText(line).fontBoundingBoxDescent
-  )
-}
-
-function setLineDrag(isDrag) {
-  gMeme.lines[gMeme.selectedLineIdx].isDrag = isDrag
 }
 
 function moveLine(dx, dy) {
@@ -230,22 +208,10 @@ function saveMeme(meme) {
   _saveMemesToStorage()
 }
 
-function getMemes() {
-  return gMemes
-}
 function deleteSavedMeme(memeId) {
   const memeIdx = getMemeId(memeId)
   gMemes.splice(memeIdx, 1)
   _saveMemesToStorage()
-}
-
-function getMemeId(memeId) {
-  const meme = gMemes.findIndex((meme) => memeId === meme.selectedImgId)
-  return meme
-}
-
-function getSevedMemes() {
-  return _loadMemesFromStorage()
 }
 
 function _saveMemesToStorage() {

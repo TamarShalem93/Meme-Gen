@@ -16,5 +16,4 @@ function loadImageFromInput(ev, onImageReady) {
     drawText(meme.lines)
   }
   reader.readAsDataURL(ev.target.files[0])
-  console.log(ev.target.files[0])
 }
