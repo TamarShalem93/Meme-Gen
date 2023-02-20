@@ -11,7 +11,7 @@ function renderGallery() {
       (img) =>
         (img = `
     <img onclick="onImgSelect(${img.id})"
-    src="img/${img.id}.JPEG" alt="" />
+    src="img/${img.id}.jpeg" alt="" />
   `)
     )
     .join('')
